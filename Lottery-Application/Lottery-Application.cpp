@@ -47,15 +47,34 @@ int* getPlayerGuess(int& playerPowerball) {
 	int size = sizeof(alreadyGuessed);
 
 	for (int i = 0; i < 5; i++) {
-		bool allUnique = false;
-		cout << "Number " << i + 1 << ": ";
-		cin >> num[i];
+		bool allUnique = false, validNum = false;
+		while (!validNum) {
+			cout << "Number " << i + 1 << ": ";
+			cin >> num[i];
+
+			if (num[i] < 10 && num[i] >= 0) {
+				validNum = true;
+			}
+			else {
+				cout << "Number must be between 0 and 9." << endl;
+			}
+		}
 		if (alreadyGuessed.size() > 0) {
 			while (!allUnique) {
+				validNum = false;
 				if (find(alreadyGuessed.begin(), alreadyGuessed.end(), num[i]) != alreadyGuessed.end()) {
 					cout << "You've already guessed that number. Please enter a unique number." << endl;
-					cout << "Number " << i + 1 << ": ";
-					cin >> num[i];
+					while (!validNum) {
+						cout << "Number " << i + 1 << ": ";
+						cin >> num[i];
+
+						if (num[i] < 10 && num[i] >= 0) {
+							validNum = true;
+						}
+						else {
+							cout << "Number must be between 0 and 9." << endl;
+						}
+					}
 				}
 				else {
 					allUnique = true;
