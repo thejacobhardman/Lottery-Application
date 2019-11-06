@@ -87,8 +87,18 @@ int* getPlayerGuess(int& playerPowerball) {
 		}
 	}
 
-	cout << "Enter your guess for the powerball: ";
-	cin >> playerPowerball;
+	bool validNum = false;
+	while (!validNum) {
+		cout << "Enter your guess for the powerball: ";
+		cin >> playerPowerball;
+
+		if (playerPowerball < 4 && playerPowerball > 0) {
+			validNum = true;
+		}
+		else {
+			cout << "Powerball guess must be between 1 and 3." << endl;
+		}
+	}
 
 	return num;
 }
@@ -181,14 +191,13 @@ void displayResults(int* lotto, int* playerGuess, int& powerball, int& playerPow
 	cout << "Powerball: " << playerPowerball << endl;
 
 	cout << endl << "You matched " << matchedNums << " numbers." << endl;
+	if (powerball == playerPowerball) { cout << "You matched the powerball! Winnings were increased by x2!" << endl; }
 	if (winAmount > 0.00) {
 		cout << "You won $" << winAmount << "!!!" << endl;
 	}
 	else {
 		cout << "You didn't win anything." << endl;
 	}
-
-	if (powerball == playerPowerball) { cout << "You matched the powerball! Winnings were increased by 2x!" << endl; }
 }
 
 void playGame(bool& isRunning, double& playerBalance, double& playerWinnings) {
@@ -222,12 +231,12 @@ int main()
 	string userInput;
 
 	cout << fixed << setprecision(2);
-	srand((unsigned)time(NULL));
 
 	cout << "Welcome to Lotto Winners!" << endl;
 
 	bool isRunning = true;
 	do {
+		srand((unsigned)time(NULL));
 		lotto = generateLotto(powerball);
 
 		//Checking if the player wants to play again.
