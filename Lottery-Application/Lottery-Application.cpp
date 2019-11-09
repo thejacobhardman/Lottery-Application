@@ -191,7 +191,7 @@ void displayResults(int* lotto, int* playerGuess, int& powerball, int& playerPow
 	cout << "Powerball: " << playerPowerball << endl;
 
 	cout << endl << "You matched " << matchedNums << " numbers." << endl;
-	if (powerball == playerPowerball) { cout << "You matched the powerball! Winnings were increased by x2!" << endl; }
+	if (powerball == playerPowerball) { cout << "You matched the powerball! Winnings were increased by X2!" << endl; }
 	if (winAmount > 0.00) {
 		cout << "You won $" << winAmount << "!!!" << endl;
 	}
